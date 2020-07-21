@@ -48,6 +48,11 @@ else
   endif
 endif
 
+if dxvk_compiler.get_id() == 'msvc'
+  add_global_arguments('/MT', language : 'cpp')
+  add_global_link_arguments('/NODEFAULTLIB:MSVCRT', language: 'cpp')
+endif
+
 if cpu_family == 'x86'
   if dxvk_compiler.has_link_argument('-Wl,--add-stdcall-alias')
     add_global_link_arguments('-Wl,--add-stdcall-alias', language: 'cpp')
